@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'recipe-manager-app'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['recipe-manager-app:8080']

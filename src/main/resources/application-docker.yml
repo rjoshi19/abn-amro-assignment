@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: recipe-manager
+  datasource:
+    driverClassName: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        search:
+          backend:
+            type: lucene
+            directory:
+              type: local-filesystem
+              root: ./data/lucene
+  cloud:
+    vault:
+      uri: http://vault:8200
+      token: 00000000-0000-0000-0000-000000000000
+      kv:
+        enabled: true
+        default-context: recipe-manager
+  config:
+    import: vault://secret/recipe-manager/app,vault://secret/recipe-manager/h2 #,vault://secret/recipe-manager/postgres
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
