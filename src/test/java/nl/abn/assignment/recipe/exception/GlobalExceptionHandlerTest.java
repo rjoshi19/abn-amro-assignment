@@ -33,7 +33,7 @@ class GlobalExceptionHandlerTest {
     /**
      * This test should assert for 404 error but due to an open bug in spring boot it redirects to 500
      * <a href="https://github.com/spring-projects/spring-boot/issues/7653">...</a>
-     * @throws Exception
+     * @throws Exception because recipe id doesn't exist
      */
     @Test
     public void testResourceNotFoundException() throws Exception {

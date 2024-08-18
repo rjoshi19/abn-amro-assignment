@@ -43,7 +43,7 @@ class RecipeServiceTest {
 
         final var result = recipeService.getAllRecipes();
         assertEquals(recipes, result);
-        assertEquals(recipe.getName(), result.get(0).getName());
+        assertEquals(recipe.getName(), result.getFirst().getName());
         verify(recipeRepository, times(1)).findAll();
     }
 
@@ -93,9 +93,7 @@ class RecipeServiceTest {
         final var recipeId = 1L;
         when(recipeRepository.findById(recipeId)).thenReturn(Optional.empty());
 
-        assertThrows(ResourceNotFoundException.class, () -> {
-            recipeService.getRecipe(recipeId);
-        });
+        assertThrows(ResourceNotFoundException.class, () -> recipeService.getRecipe(recipeId));
         verify(recipeRepository, times(1)).findById(recipeId);
     }
 

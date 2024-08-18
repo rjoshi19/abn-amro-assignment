@@ -57,7 +57,7 @@ class RecipeControllerTest {
 
         final var recipes = recipeRepository.findAll();
         assertEquals(1, recipes.size());
-        assertEquals("Test Recipe", recipes.get(0).getName());
+        assertEquals("Test Recipe", recipes.getFirst().getName());
     }
 
     @Test
